@@ -1,20 +1,112 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
 
+    <!--Section: Blog v.1-->
+    <section class="py-4 text-center text-lg-left">
+
+        <!--Section heading-->
+        <h2 class="h1 font-weight-bold text-center mb-5 pt-4">WORKSHOP ANGULAR 5</h2>
+        <!--Section description-->
+        <p class="text-center mb-5 pb-3">วิดีโอสอนการ เพิ่ม ลบ แก้ไข การแสดงข้อมูล และการใช้งาน Material design อย่าง MDBootstrap</p>
+        <div class="text-right">
+            <button type="button" class="btn btn-primary waves-light" (click)="form.show()" mdbWavesEffect> 
+                <i class="fa fa-plus-square"> เพิ่มข้อมูลใหม่</i></button>
+        </div>
+        <!--Grid row-->
+        <div class="row" *ngFor="let item of Items">
+
+            <!--Grid column-->
+            <div class="col-lg-5 col-xl-5 pb-3">
+                <!--Featured image-->
+                <div class="view overlay rounded z-depth-2 waves-light" mdbWavesEffect>
+                    <img [src]="item.image" alt="Sample image for first version of blog listing" class="img-fluid">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-7 col-xl-7">
+                <!--Excerpt-->
+                <a href="" class="green-text">
+                    <h6 class="font-weight-bold pb-1">
+                        <i class="fa fa-cutlery"></i> {{ item.category }}</h6>
+                </a>
+                <h3 class="mb-4 font-weight-bold dark-grey-text">
+                    <strong>{{ item.name }}</strong>
+                </h3>
+                <p>{{ item.detail }}
+                </p>
+                <p>
+                    <a>
+                        <strong>วันที่แก้ไขล่าสุด</strong>
+                    </a>, {{ item.date | date:'dd/MM/yyy HH:mm:ss':'+0700' }}</p>
+                <a class="btn btn-success btn-md mb-3 waves-light" mdbWavesEffect>Read more</a>
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+
+    </section>
+    <!--Section: Blog v.1-->
+</div>
+
+<!--Modal: Contact form-->
+<div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <h4 class="title"><i class="fa fa-pencil"></i> Add New Post</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+                <div class="row">
+                    <div class="col3">
+                        <img src="https://mikesmasterclasses.com/wp-content/uploads/2017/07/no-thumbnail.png" alt="Image example" class="img-thumbnail img-fluid">
+
+                    </div>
+                    <div class="col9">
+                        <div class="md-form form-sm">
+                            <input [mdbValidate]="false" mdbInputDirective type="text" id="form19" class="form-control">
+                            <label for="form19">รูปภาพอาหาร</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-cutlery prefix"></i>
+                    <input [mdbValidate]="false" mdbInputDirective type="password" id="form20" class="form-control">
+                    <label for="form20">ประเภทอาหาร</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-tag prefix"></i>
+                    <input [mdbValidate]="false" mdbInputDirective type="text" id="form21" class="form-control">
+                    <label for="form21">หัวข้ออาหาร</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-info prefix"></i>
+                    <textarea mdbInputDirective type="text" id="form8" class="md-textarea mb-0"></textarea>
+                    <label for="form8">รายละเอียดอาหาร</label>
+                </div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-2 waves-light" mdbWavesEffect>บันทึกข้อมูล <i class="fa fa-send ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: Contact form-->
